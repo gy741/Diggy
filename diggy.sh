@@ -95,29 +95,16 @@ regxy () {
     awk '!x[$1]++' $links
 }
 
-sec () {
-    matches=$(grep -EHirn "accesskey|admin|aes|api_key|apikey|checkClientTrusted|crypt|http:|https:|password|pinning|secret|SHA256|SharedPreferences|superuser|token|X509TrustManager|insert into|setJavaScriptEnabled|root|JavascriptInterface|MODE_WORLD_READABLE|MODE_WORLD_WRITEABLE|Pinner|checkServerTrusted|api_secret|api/v1|api/v2|firebaseio")
-    for final in $matches
-    do
-        final=${final//$"\""/}
-        final=${final//$"'"/}
-        if [ $(echo "$final" | grep "http://schemas.android.com") ]
-        then
-            :
-        else
-            echo "$final" >> "$links"
-        fi
-    done
-    awk '!x[$1]++' $links
+uniq_find() {
+    grep -EHirn "accesskey|admin|aes|api_key|apikey|checkClientTrusted|crypt|http:|https:|password|pinning|secret|SHA256|SharedPreferences|superuser|token|X509TrustManager|insert into|setJavaScriptEnabled|root|JavascriptInterface|MODE_WORLD_READABLE|MODE_WORLD_WRITEABLE|Pinner|checkServerTrusted|api_secret|api/v1|api/v2|firebaseio" $decom/ >> "$links"
 }
 
 
 printf $"$run Decompiling the apk\n"
 extract
 printf $"$run Extracting endpoints\n"
-#regxy
-#printf $"$info Endpoints saved in: $links\n"
-
-sec
+regxy
 printf $"$info Endpoints saved in: $links\n"
+uniq_find
+printf $"$info uniq value saved in: $links\n"
 exit
