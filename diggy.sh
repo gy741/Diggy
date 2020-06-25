@@ -96,7 +96,7 @@ regxy () {
 }
 
 uniq_find() {
-    grep -EHirn "accesskey|admin|aes|api_key|apikey|checkClientTrusted|crypt|http:|https:|password|pinning|secret|SHA256|SharedPreferences|superuser|token|X509TrustManager|insert into|setJavaScriptEnabled|root|JavascriptInterface|MODE_WORLD_READABLE|MODE_WORLD_WRITEABLE|Pinner|checkServerTrusted|api_secret|api/v1|api/v2|firebaseio" $decom/ >> "$links"
+    grep -EHirn "accesskey|admin|aes|api_key|apikey|checkClientTrusted|crypt|http:|https:|password|pinning|secret|SHA256|SharedPreferences|superuser|token|X509TrustManager|insert into|setJavaScriptEnabled|root|JavascriptInterface|MODE_WORLD_READABLE|MODE_WORLD_WRITEABLE|Pinner|checkServerTrusted|api_secret|api/v1|api/v2|firebaseio|AES/CBC/PKCS5PADDING" $decom/ >> "$links"
 }
 
 
